@@ -1,1 +1,3 @@
 venv/
+phonestore.db
+__pycache__/
