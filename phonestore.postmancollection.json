@@ -1,0 +1,136 @@
+{
+  "info": {
+    "name": "PhoneStore API",
+    "description": "All endpoints for the PhoneStore backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth", "login"] },
+            "body": { "mode": "raw", "raw": "{\n  \"password\": \"admin123\"\n}" }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/auth/change-password", "host": ["{{base_url}}"], "path": ["auth", "change-password"] },
+            "body": { "mode": "raw", "raw": "{\n  \"old_password\": \"admin123\",\n  \"new_password\": \"mynewpassword\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phones",
+      "item": [
+        {
+          "name": "Get All Phones",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/phones", "host": ["{{base_url}}"], "path": ["phones"] }
+          }
+        },
+        {
+          "name": "Get All Phones (with filters)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/phones?search=iphone&condition=New&sort=low",
+              "host": ["{{base_url}}"], "path": ["phones"],
+              "query": [
+                { "key": "search", "value": "iphone" },
+                { "key": "condition", "value": "New" },
+                { "key": "sort", "value": "low" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Phone",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/phones/1", "host": ["{{base_url}}"], "path": ["phones", "1"] }
+          }
+        },
+        {
+          "name": "Add Phone",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/phones", "host": ["{{base_url}}"], "path": ["phones"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"iPhone 13 Pro\",\n  \"price\": 450000,\n  \"condition\": \"Used\",\n  \"ram\": \"6GB\",\n  \"storage\": \"256GB\",\n  \"battery\": \"3095mAh\",\n  \"image\": \"\",\n  \"notes\": \"Bought 6 months ago, no scratches\",\n  \"sold\": 0\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Phone",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/phones/1", "host": ["{{base_url}}"], "path": ["phones", "1"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"iPhone 13 Pro\",\n  \"price\": 420000,\n  \"condition\": \"Used\",\n  \"ram\": \"6GB\",\n  \"storage\": \"256GB\",\n  \"battery\": \"3095mAh\",\n  \"image\": \"\",\n  \"notes\": \"Price reduced!\",\n  \"sold\": 0\n}"
+            }
+          }
+        },
+        {
+          "name": "Mark Phone as Sold",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/phones/1", "host": ["{{base_url}}"], "path": ["phones", "1"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"iPhone 13 Pro\",\n  \"price\": 420000,\n  \"condition\": \"Used\",\n  \"ram\": \"6GB\",\n  \"storage\": \"256GB\",\n  \"battery\": \"3095mAh\",\n  \"image\": \"\",\n  \"notes\": \"Price reduced!\",\n  \"sold\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Phone",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{base_url}}/phones/1", "host": ["{{base_url}}"], "path": ["phones", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "item": [
+        {
+          "name": "Get Settings",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/settings", "host": ["{{base_url}}"], "path": ["settings"] }
+          }
+        },
+        {
+          "name": "Update Settings",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/settings", "host": ["{{base_url}}"], "path": ["settings"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"store_name\": \"Chidi Phones\",\n  \"whatsapp\": \"2348012345678\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
